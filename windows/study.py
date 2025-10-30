@@ -149,7 +149,7 @@ class StudyWindow(QDialog):
         cur.execute("SELECT id, reps, interval, ease, learning_step_index, next_due FROM cards WHERE id = ?", (card["id"],))
         row = cur.fetchone()
         if not row:
-            print(f"Error: card {card["id"]} not found in database.")
+            print(f"Error: card {card['id']} not found in database.")
             return
 
         next_due, new_interval, new_reps, new_ease, new_lidx = self._compute_next_sm2(dict(row), quality)
@@ -404,3 +404,4 @@ class StudyWindow(QDialog):
             WHERE id = ?
         """, (next_due, new_interval, new_reps, new_lidx, now, card_id))
         self.db_conn.commit()
+
